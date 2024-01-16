@@ -5,7 +5,7 @@ A comprehensive bug tracking tool tailored for React, ensuring that no UI bug go
 - Install Dependency
 
 ```sh
-npm install bug-tracker
+npm i ui-bug-tracker
 ```
 
 ## Example Setup
@@ -13,7 +13,7 @@ npm install bug-tracker
 ### React
 
 ```javascript
-import BugReporter from "bug-tracker";
+import BugReporter from "ui-bug-tracker";
 
 // pass server endpoint where you need to store the bug report
 const report = new BugReporter("https://your-api-endpoint.com/report");
@@ -37,7 +37,7 @@ if (cleanupErrorListener) {
 ### React Native
 
 ```javascript
-import BugReporter from "bug-tracker";
+import BugReporter from "ui-bug-tracker";
 
 // pass server endpoint where you need to store the bug report
 const bugReporter = new BugReporter(
