@@ -30,8 +30,14 @@ class ReactBugReporter {
       // Check if the event is an ErrorEvent or a PromiseRejectionEvent
       if (errorEvent instanceof PromiseRejectionEvent) {
         errorData = {
-          errorMessage: errorEvent.reason?.message || "Unknown error",
-          stackTrace: errorEvent.reason?.stack || "No stack trace",
+          errorMessage:
+            errorEvent.reason && errorEvent.reason.message
+              ? errorEvent.reason.message
+              : "Unknown error",
+          stackTrace:
+            errorEvent.reason && errorEvent.reason.stack
+              ? errorEvent.reason.stack
+              : "No stack trace",
           userAgent: navigator.userAgent,
           browser: getBrowserInfo(),
           operatingSystem: getOperatingSystem(),
@@ -39,7 +45,10 @@ class ReactBugReporter {
       } else {
         errorData = {
           errorMessage: errorEvent.message,
-          stackTrace: errorEvent.error?.stack || "No stack trace",
+          stackTrace:
+            errorEvent.error && errorEvent.error.stack
+              ? errorEvent.error.stack
+              : "No stack trace",
           file: errorEvent.filename,
           lineNumber: errorEvent.lineno,
           userAgent: navigator.userAgent,
