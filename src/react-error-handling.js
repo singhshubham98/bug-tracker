@@ -25,24 +25,34 @@ class ReactBugReporter {
 
   initErrorHandling() {
     const handleUIError = async (errorEvent) => {
-      console.log("errorEvent", errorEvent);
-      // Report the UI-related error to the server using the BugReporter
-      const errorData = {
-        errorMessage: errorEvent.error.message,
-        stackTrace: errorEvent.error.stack,
-        file: errorEvent.filename,
-        lineNumber: errorEvent.lineno,
-        userAgent: navigator.userAgent,
-        browser: getBrowserInfo(),
-        operatingSystem: getOperatingSystem(),
-      };
+      let errorData;
+
+      // Check if the event is an ErrorEvent or a PromiseRejectionEvent
+      if (errorEvent instanceof PromiseRejectionEvent) {
+        errorData = {
+          errorMessage: errorEvent.reason?.message || "Unknown error",
+          stackTrace: errorEvent.reason?.stack || "No stack trace",
+          userAgent: navigator.userAgent,
+          browser: getBrowserInfo(),
+          operatingSystem: getOperatingSystem(),
+        };
+      } else {
+        errorData = {
+          errorMessage: errorEvent.message,
+          stackTrace: errorEvent.error?.stack || "No stack trace",
+          file: errorEvent.filename,
+          lineNumber: errorEvent.lineno,
+          userAgent: navigator.userAgent,
+          browser: getBrowserInfo(),
+          operatingSystem: getOperatingSystem(),
+        };
+      }
 
       this.reportUIBug(errorData);
     };
 
     // Attach the error event listener
     this.window.addEventListener("error", handleUIError);
-
     this.window.addEventListener("unhandledrejection", handleUIError);
 
     // Return a function to clean up the event listener on component unmount
