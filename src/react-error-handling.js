@@ -59,8 +59,9 @@ class ReactBugReporter {
           environment: this.props.env,
         };
       }
-
-      this.reportUIBug(errorData);
+      if (this.props.env !== "DEVELOPMENT") {
+        this.reportUIBug(errorData);
+      }
     };
 
     // Attach the error event listener
