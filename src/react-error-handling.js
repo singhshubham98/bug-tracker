@@ -1,9 +1,10 @@
 import { getBrowserInfo, getOperatingSystem } from "./utils";
 
 class ReactBugReporter {
-  constructor(apiEndpoint, globalObject) {
+  constructor(apiEndpoint, globalObject, props) {
     this.apiEndpoint = apiEndpoint;
     this.window = globalObject;
+    this.props = props;
   }
 
   async reportUIBug(errorData) {
@@ -41,6 +42,7 @@ class ReactBugReporter {
           userAgent: navigator.userAgent,
           browser: getBrowserInfo(),
           operatingSystem: getOperatingSystem(),
+          environment: this.props.env,
         };
       } else {
         errorData = {
@@ -54,6 +56,7 @@ class ReactBugReporter {
           userAgent: navigator.userAgent,
           browser: getBrowserInfo(),
           operatingSystem: getOperatingSystem(),
+          environment: this.props.env,
         };
       }
 

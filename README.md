@@ -18,6 +18,7 @@ import BugReporter from "ui-bug-tracker";
 // pass server endpoint where you need to store the bug report
 const report = new BugReporter("https://your-api-endpoint.com/report", window, {
   platform: "react",
+  env: "PRODUCTION/DEVELOPMENT/STAGING",
 });
 
 // Set up the error listener when the script loads
@@ -45,7 +46,10 @@ import BugReporter from "ui-bug-tracker";
 const bugReporter = new BugReporter(
   "https://your-api-endpoint.com/report",
   ErrorUtils,
-  { platform: "react" }
+  {
+    platform: "react-native",
+    env: "PRODUCTION/DEVELOPMENT/STAGING",
+  }
 );
 
 // Set up the error listener when the script loads
