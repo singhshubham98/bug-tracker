@@ -25,6 +25,7 @@ class ReactBugReporter {
 
   initErrorHandling() {
     const handleUIError = async (errorEvent) => {
+      console.log("errorEvent", errorEvent);
       // Report the UI-related error to the server using the BugReporter
       const errorData = {
         errorMessage: errorEvent.error.message,
@@ -42,9 +43,12 @@ class ReactBugReporter {
     // Attach the error event listener
     this.window.addEventListener("error", handleUIError);
 
+    this.window.addEventListener("unhandledrejection", handleUIError);
+
     // Return a function to clean up the event listener on component unmount
     return () => {
       this.window.removeEventListener("error", handleUIError);
+      this.window.removeEventListener("unhandledrejection", handleUIError);
     };
   }
 }

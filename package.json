@@ -1,6 +1,6 @@
 {
   "name": "ui-bug-tracker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A comprehensive bug tracking tool tailored for React, ensuring that no UI bug goes unnoticed",
   "main": "index.js",
   "repository": {
