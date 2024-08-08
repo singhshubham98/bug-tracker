@@ -16,7 +16,9 @@ npm i ui-bug-tracker
 import BugReporter from "ui-bug-tracker";
 
 // pass server endpoint where you need to store the bug report
-const report = new BugReporter("https://your-api-endpoint.com/report");
+const report = new BugReporter("https://your-api-endpoint.com/report", window, {
+  platform: "react",
+});
 
 // Set up the error listener when the script loads
 const cleanupErrorListener = bugReporter.setupErrorListener();
@@ -42,7 +44,8 @@ import BugReporter from "ui-bug-tracker";
 // pass server endpoint where you need to store the bug report
 const bugReporter = new BugReporter(
   "https://your-api-endpoint.com/report",
-  ErrorUtils
+  ErrorUtils,
+  { platform: "react" }
 );
 
 // Set up the error listener when the script loads
