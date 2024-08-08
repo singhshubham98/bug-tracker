@@ -1,31 +1,11 @@
-// import ViewShot from 'react-native-view-shot';
-
 class NativeBugReporter {
-  constructor(apiEndpoint, globalObject, props = {}) {
+  constructor(apiEndpoint, globalObject) {
     this.apiEndpoint = apiEndpoint;
     this.ErrorUtils = globalObject;
   }
 
-  // captureScreenshot = async () => {
-  //   try {
-  //     const uri = await this.refs.viewShot.capture();
-  //     console.log('Screenshot URI:', uri);
-  //     return uri;
-  //   } catch (error) {
-  //     console.error('Error capturing screenshot:', error);
-  //     return null;
-  //   }
-  // };
-
   async reportUIBug(errorData) {
     try {
-      // Check for screenshot
-      // const screenshotUrl = await this.captureScreenshot();
-      // if (screenshotUrl) {
-      //   errorData.screenshot = screenshotUrl; // Attach the URL to errorData
-      // }
-
-      // Send the error data, including the screenshot URL, to the server
       const response = await fetch(this.apiEndpoint, {
         method: "POST",
         headers: {
